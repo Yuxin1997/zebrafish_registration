@@ -1,1 +1,1 @@
-# whole procedure of registration
+# Procedure of registration
