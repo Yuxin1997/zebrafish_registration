@@ -1,15 +1,19 @@
 
-# reference is your processed z stack
-reference=ref/HSA.nrrd
-# moving file is your averaged calcium trace volume
+# reference is standard atlas file, take HSA line as example
+reference=ref/T_AVG_H2BGCaMP.nrrd
+# moving file is your processed zstack file
 moving_file=fish1.nrrd
+# warped file is warped zstack, which you need to check the performance of registration
+warped_file=fish1_warped_zstack.nrrd
+# prefix of transfromation files
+prefix=fish1_output_
 
 # step1； register your moving file onto reference file
 antsRegistration --verbose 1 \
                  --dimensionality 3 \
                  --float 0 \
                  --collapse-output-transforms 1 \
-                 --output [ output_,output_Warped.nii.gz,output_InverseWarped.nii.gz ] \
+                 --output [$prefix,{$prefix}Warped.nii.gz,{$prefix}output_InverseWarped.nii.gz ] \
                  --interpolation Linear \
                  --use-histogram-matching 0 \
                  --winsorize-image-intensities [ 0.005,0.995 ] \
@@ -37,7 +41,7 @@ antsRegistration --verbose 1 \
 #                  --dimensionality 3 \
 #                  --float 1 \
 #                  --collapse-output-transforms 1 \
-#                  --output [ output_,output_Warped.nii.gz,output_InverseWarped.nii.gz ] \
+#                  --output [$prefix,{$prefix}Warped.nii.gz,{$prefix}output_InverseWarped.nii.gz ] \
 #                  --interpolation WelchWindowedSinc \
 #                  --use-histogram-matching 0 \
 #                  --winsorize-image-intensities [ 0.005,0.995 ] \
@@ -63,7 +67,7 @@ antsRegistration --verbose 1 \
 #                  --dimensionality 3 \
 #                  --float 1 \
 #                  --collapse-output-transforms 1 \
-#                  --output [ output_,output_Warped.nii.gz,output_InverseWarped.nii.gz ] \
+#                  --output [$prefix,{$prefix}Warped.nii.gz,{$prefix}output_InverseWarped.nii.gz ] \
 #                  --interpolation WelchWindowedSinc \
 #                  --use-histogram-matching 0 \
 #                  --winsorize-image-intensities [ 0.005,0.995 ] \
@@ -92,6 +96,6 @@ antsApplyTransforms --verbose 1 \
                     --interpolation WelchWindowedSinc \
                     --input $moving_file \
                     --reference-image $reference \
-                    --output result_warped.nrrd \
-                    --transform output_1Warp.nii.gz \
-                    --t output_0GenericAffine.mat
+                    --output $warped_file \
+                    --transform {$prefix}1Warp.nii.gz \
+                    --transfrom {$prefix}0GenericAffine.mat
