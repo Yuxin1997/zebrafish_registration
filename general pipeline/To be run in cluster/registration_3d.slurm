@@ -30,4 +30,3 @@
 # Go to the job submission directory and run your application
 cd /home/bkhan/ants_reg_mapzebrain
 sh reg_zstack_to_atlas.sh
-sh reg_video_to_zstack.sh
