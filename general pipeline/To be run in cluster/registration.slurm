@@ -28,6 +28,6 @@
 # or you can source ~/.bashrc or ~/.bash_profile
 
 # Go to the job submission directory and run your application
-cd /home/bkhan/evalulation_acc
-sh reg_stacks_to_template_f4eval1.sh
-sh reg_stacks_to_template_f4eval2.sh
+cd /home/bkhan/ants_reg_mapzebrain
+sh reg_zstack_to_atlas.sh
+sh reg_video_to_zstack.sh
