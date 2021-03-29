@@ -1,0 +1,1 @@
+# whole procedure of registration
