@@ -1,5 +1,5 @@
-reference=ref_slice.tiff
-moving_file=averaged_video.tiff
+reference=ref_slice.tif
+moving_file=averaged_video.tif
 prefix=f1_2d_output_
 
 antsRegistration --verbose 1 \
